@@ -1,0 +1,7 @@
+xpath()
+//(seletor) seleciona todos os nodes na tree que seguem os seletores
+exemplo
+//p -> todos os paragrafos do gtml
+.extract() -> extrai todos os seletores 
+//...//@ref
+//..//[@class = "class-name"]

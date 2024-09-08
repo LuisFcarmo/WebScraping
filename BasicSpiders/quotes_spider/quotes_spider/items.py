@@ -5,9 +5,12 @@
 
 import scrapy
 
-
-
 class QuotesSpiderItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    message = scrapy.Field()
+    author = scrapy.Field()
+    born = scrapy.Field()
+    author_description = scrapy.Field()
+    url = scrapy.Field()
+    tags = scrapy.Field()
+    tags_url = scrapy.Field()
+   

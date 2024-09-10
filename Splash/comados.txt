@@ -1,0 +1,2 @@
+#comando para rodar a docker com um --max--timeout para dar tempo do script do sellenium rodar
+sudo docker run -p 5023:5023 -p 8050:8050 -p 8051:8051 scrapinghub/splash --max-timeout 36

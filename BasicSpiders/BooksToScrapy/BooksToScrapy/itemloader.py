@@ -1,12 +1,16 @@
 from scrapy.loader import ItemLoader
 from itemloaders.processors import MapCompose, TakeFirst
 
+def TratarUrl(url:str):
+    url = url.replace("catalogue/", "")
+    return url
+
 class BookItemLoader(ItemLoader):
     default_output_processor = TakeFirst()
-    img_url_in = MapCompose(lambda x : x)
-    title_in = MapCompose(lambda x: x)
+    img_url_in = MapCompose(TratarUrl)
+    title_in = MapCompose(lambda x:x)
     info_url = MapCompose(lambda x: x)
-    price_url = MapCompose(lambda x: x)
+    price_url = MapCompose(lambda x: x.replace("£", ""))
     stock_in = MapCompose(lambda x: x)
     quantity_in = MapCompose(lambda x: x)
     rating_in = MapCompose(lambda x: x.replace("star-rating ", ""))

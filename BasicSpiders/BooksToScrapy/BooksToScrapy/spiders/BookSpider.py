@@ -21,10 +21,14 @@ class BookspiderSpider(scrapy.Spider):
             BookLoader.add_xpath("stock", ".//p[@class = 'instock availability']")
             BookLoader.add_xpath("rating", ".//p[contains(@class, 'star-rating')]/@class")
                 
-            url_in_book_page = urljoin(self.start_urls[0], BookLoader.get_output_value("info_url"))
-            print(f"url que vou buscar {url_in_book_page}")
+            url_in_book_page = urljoin(self.start_urls[0] + '/catalogue/', BookLoader.get_output_value("info_url"))
             if(url_in_book_page is not None):
                 yield response.follow(url_in_book_page, self.parse_in_book_info, meta = {"loader": BookLoader})
+
+        next_page = urljoin(response.url, response.xpath(".//li[@class = 'next']/a/@href").get())
+        if(next_page is not None):
+            yield response.follow(next_page, callback = self.parse)
+                
 
     def parse_in_book_info(self, response):
         loader:BookItemLoader = response.meta["loader"]
